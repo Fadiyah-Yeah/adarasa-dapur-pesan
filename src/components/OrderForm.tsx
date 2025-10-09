@@ -27,19 +27,19 @@ const OrderForm = () => {
 
     const message = `*PESANAN BARU - KATERING ADA RASA*
 
-📝 *Data Pemesan:*
+*Data Pemesan:*
 Nama: ${formData.name}
 No. HP: ${formData.phone}
 Alamat: ${formData.address || "-"}
 
-🍱 *Detail Pesanan:*
+*Detail Pesanan:*
 Menu: ${formData.menu}
 Tanggal Acara: ${formData.eventDate}
 
-🥬 *Pilihan Sayur:*
+*Pilihan Sayur:*
 ${formData.vegetable || "-"}
 
-📋 *Catatan Tambahan:*
+*Catatan Tambahan:*
 ${formData.notes || "-"}
 
 ---
