@@ -5,9 +5,9 @@ import heroImage from "@/assets/hero-image.jpg";
 const Hero = () => {
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent(
-      "Halo ADA RASA! Saya ingin tanya-tanya tentang katering."
+      "Halo Katering Ada Rasa! Saya ingin tanya-tanya tentang katering."
     );
-    window.open(`https://wa.me/6281234567890?text=${message}`, "_blank");
+    window.open(`https://wa.me/6285602113573?text=${message}`, "_blank");
   };
 
   const scrollToForm = () => {
@@ -37,7 +37,7 @@ const Hero = () => {
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground mb-4 max-w-2xl mx-auto">
-            ADA RASA – Katering PO area Magelang & Jogja
+            Katering Ada Rasa – Katering PO area Magelang & Jogja
           </p>
 
           <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">

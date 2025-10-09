@@ -7,7 +7,7 @@ const About = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Tentang <span className="text-primary">ADA RASA</span>
+              Tentang <span className="text-primary">Katering Ada Rasa</span>
             </h2>
             <div className="w-20 h-1 bg-accent mx-auto mb-6"></div>
             <p className="text-lg text-muted-foreground italic">
@@ -23,7 +23,7 @@ const About = () => {
                   Filosofi Kami
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  ADA RASA lahir dari kecintaan kami terhadap masakan rumahan
+                  Katering Ada Rasa lahir dari kecintaan kami terhadap masakan rumahan
                   yang penuh kehangatan. Setiap hidangan dibuat dengan penuh
                   perhatian, menggunakan bahan-bahan segar pilihan yang dimasak
                   setiap hari. Kami percaya bahwa makanan yang dibuat dengan
@@ -40,9 +40,10 @@ const About = () => {
                     Lokasi Kami
                   </h4>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Perumahan Marisson Regency, Jogomulyo, Tempuran<br />
-                    Kabupaten Magelang, Jawa Tengah<br />
-                    <span className="font-medium">Blok E6</span>
+                    Perumahan Marisson Regency Blok E6<br />
+                    Jogosaran, Dusun VIII, Jogomulyo<br />
+                    Kecamatan Tempuran, Kabupaten Magelang<br />
+                    Jawa Tengah
                   </p>
                 </div>
               </div>

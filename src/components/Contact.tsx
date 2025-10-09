@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, Instagram, MessageCircle } from "lucide-react";
+import { MapPin, Phone, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Contact = () => {
@@ -11,7 +11,7 @@ const Contact = () => {
           </h2>
           <div className="w-20 h-1 bg-accent mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground">
-            Kami siap membantu kebutuhan katering Anda
+            Kami siap membantu kebutuhan katering Anda via WhatsApp
           </p>
         </div>
 
@@ -29,8 +29,9 @@ const Contact = () => {
                   <div>
                     <p className="font-semibold text-foreground">Alamat</p>
                     <p className="text-muted-foreground text-sm">
-                      Perumahan Marisson Regency, Blok E6<br />
-                      Jogomulyo, Tempuran<br />
+                      Perumahan Marisson Regency Blok E6<br />
+                      Jogosaran, Dusun VIII, Jogomulyo<br />
+                      Kecamatan Tempuran<br />
                       Kabupaten Magelang, Jawa Tengah
                     </p>
                   </div>
@@ -39,43 +40,18 @@ const Contact = () => {
                 <div className="flex items-start gap-4">
                   <Phone className="text-primary flex-shrink-0 mt-1" size={24} />
                   <div>
-                    <p className="font-semibold text-foreground">Telepon/WhatsApp</p>
+                    <p className="font-semibold text-foreground">WhatsApp</p>
                     <a
-                      href="https://wa.me/6281234567890"
+                      href="https://wa.me/6285602113573"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-accent hover:text-accent/80 text-sm"
                     >
-                      +62 812-3456-7890
+                      +62 856-0211-3573
                     </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <Mail className="text-primary flex-shrink-0 mt-1" size={24} />
-                  <div>
-                    <p className="font-semibold text-foreground">Email</p>
-                    <a
-                      href="mailto:info@adarasa.com"
-                      className="text-accent hover:text-accent/80 text-sm"
-                    >
-                      info@adarasa.com
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <Instagram className="text-primary flex-shrink-0 mt-1" size={24} />
-                  <div>
-                    <p className="font-semibold text-foreground">Instagram</p>
-                    <a
-                      href="https://instagram.com/adarasa.catering"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-accent hover:text-accent/80 text-sm"
-                    >
-                      @adarasa.catering
-                    </a>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      (Hanya menerima pesanan via WhatsApp)
+                    </p>
                   </div>
                 </div>
               </div>
@@ -84,9 +60,9 @@ const Contact = () => {
                 <Button
                   onClick={() => {
                     const message = encodeURIComponent(
-                      "Halo ADA RASA! Saya ingin tanya-tanya tentang katering."
+                      "Halo Katering Ada Rasa! Saya ingin tanya-tanya tentang katering."
                     );
-                    window.open(`https://wa.me/6281234567890?text=${message}`, "_blank");
+                    window.open(`https://wa.me/6285602113573?text=${message}`, "_blank");
                   }}
                   className="w-full bg-nature hover:bg-nature/90 text-nature-foreground gap-2"
                 >
@@ -98,23 +74,22 @@ const Contact = () => {
 
             <div className="bg-card rounded-xl p-6 shadow-lg">
               <h3 className="text-lg font-semibold text-foreground mb-3">
-                ⏰ Jam Operasional
+                ⏰ Jam Pemesanan
               </h3>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Senin - Jumat</span>
-                  <span className="font-medium">08:00 - 17:00 WIB</span>
+                  <span className="font-medium">09:00 - 15:00 WIB</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Sabtu</span>
-                  <span className="font-medium">08:00 - 14:00 WIB</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Minggu</span>
+                  <span className="text-muted-foreground">Sabtu - Minggu</span>
                   <span className="font-medium">Libur</span>
                 </div>
               </div>
               <p className="text-xs text-muted-foreground mt-4">
+                * Sabtu & Minggu libur, kecuali ada pesanan sebelumnya
+              </p>
+              <p className="text-xs text-muted-foreground mt-2">
                 * Chat WhatsApp bisa kapan saja, akan kami balas secepatnya
               </p>
             </div>
@@ -128,18 +103,19 @@ const Contact = () => {
               </h3>
               <div className="relative w-full h-[400px] rounded-lg overflow-hidden">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.123456789!2d110.217!3d-7.523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMzEnMjIuOCJTIDExMMKwMTMnMDEuMiJF!5e0!3m2!1sen!2sid!4v1234567890"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.8!2d110.217!3d-7.473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a8c7e12345678%3A0x1234567890abcdef!2sPerumahan%20Marisson%20Regency%2C%20Jogomulyo%2C%20Tempuran%2C%20Magelang%20Regency%2C%20Central%20Java!5e0!3m2!1sen!2sid!4v1234567890"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Lokasi ADA RASA Catering"
+                  title="Lokasi Katering Ada Rasa"
                 ></iframe>
               </div>
               <p className="text-sm text-muted-foreground mt-4 text-center">
-                Perumahan Marisson Regency, Jogomulyo, Tempuran, Kab. Magelang
+                Perumahan Marisson Regency Blok E6, Jogosaran, Dusun VIII, Jogomulyo<br />
+                Kecamatan Tempuran, Kabupaten Magelang, Jawa Tengah
               </p>
             </div>
           </div>

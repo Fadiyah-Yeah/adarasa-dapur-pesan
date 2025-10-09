@@ -31,7 +31,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <div className="text-2xl font-bold text-primary">ADA RASA</div>
+            <div className="text-2xl font-bold text-primary">Katering Ada Rasa</div>
             <div className="hidden md:block text-xs text-muted-foreground">
               Dari Dapur Kami, Untuk Selera Anda
             </div>
@@ -50,18 +50,6 @@ const Navigation = () => {
               className="text-foreground hover:text-primary transition-colors"
             >
               Menu
-            </button>
-            <button
-              onClick={() => scrollToSection("testimoni")}
-              className="text-foreground hover:text-primary transition-colors"
-            >
-              Testimoni
-            </button>
-            <button
-              onClick={() => scrollToSection("galeri")}
-              className="text-foreground hover:text-primary transition-colors"
-            >
-              Galeri
             </button>
             <button
               onClick={() => scrollToSection("pesan")}
@@ -101,18 +89,6 @@ const Navigation = () => {
               className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors"
             >
               Menu
-            </button>
-            <button
-              onClick={() => scrollToSection("testimoni")}
-              className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors"
-            >
-              Testimoni
-            </button>
-            <button
-              onClick={() => scrollToSection("galeri")}
-              className="block w-full text-left py-2 text-foreground hover:text-primary transition-colors"
-            >
-              Galeri
             </button>
             <button
               onClick={() => scrollToSection("pesan")}

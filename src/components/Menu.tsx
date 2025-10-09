@@ -6,10 +6,26 @@ import nasiBoxImage from "@/assets/nasi-box.jpg";
 const Menu = () => {
   const handleOrder = (menuType: string) => {
     const message = encodeURIComponent(
-      `Halo ADA RASA! Saya tertarik dengan ${menuType}. Mohon info lebih lanjut.`
+      `Halo Katering Ada Rasa! Saya tertarik dengan ${menuType}. Mohon info lebih lanjut.`
     );
-    window.open(`https://wa.me/6281234567890?text=${message}`, "_blank");
+    window.open(`https://wa.me/6285602113573?text=${message}`, "_blank");
   };
+
+  const kueKeringMenu = [
+    { name: "Nastar", price: "48.000" },
+    { name: "Putri Salju", price: "33.000" },
+    { name: "Kastengel", price: "58.000" },
+    { name: "Choco Chip", price: "34.000" },
+    { name: "Kue Kacang", price: "33.000" },
+    { name: "Paket Lengkap", price: "200.000" },
+  ];
+
+  const nasiBoxMenu = [
+    { name: "Nasi Box Ayam Goreng", price: "18.000" },
+    { name: "Nasi Box Ayam Bakar", price: "20.000" },
+    { name: "Nasi Box Rendang Ayam", price: "22.000" },
+    { name: "Nasi Box Ikan Goreng", price: "19.000" },
+  ];
 
   return (
     <section id="menu" className="py-20 bg-background">
@@ -20,8 +36,7 @@ const Menu = () => {
           </h2>
           <div className="w-20 h-1 bg-accent mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Pilih dari berbagai menu lezat kami yang dapat disesuaikan dengan
-            selera dan kebutuhan acara Anda
+            Pilih dari berbagai menu lezat kami dengan harga terjangkau
           </p>
         </div>
 
@@ -31,7 +46,7 @@ const Menu = () => {
             <div className="relative h-64 overflow-hidden">
               <img
                 src={kueKeringImage}
-                alt="Aneka Kue Kering ADA RASA"
+                alt="Aneka Kue Kering Katering Ada Rasa"
                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute top-4 right-4 bg-accent text-accent-foreground px-4 py-2 rounded-full font-semibold text-sm">
@@ -46,30 +61,17 @@ const Menu = () => {
                 Kue kering premium dengan berbagai pilihan rasa yang cocok untuk
                 hampers, arisan, atau suguhan spesial.
               </p>
-              <div className="space-y-2 text-sm">
-                <div className="flex items-center gap-2">
-                  <span className="text-accent">✓</span>
-                  <span>Nastar premium dengan selai nanas asli</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-accent">✓</span>
-                  <span>Kastengel renyah dengan keju berkualitas</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-accent">✓</span>
-                  <span>Putri Salju lembut dan meleleh di mulut</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-accent">✓</span>
-                  <span>Dan masih banyak varian lainnya</span>
-                </div>
+              <div className="space-y-2">
+                {kueKeringMenu.map((item, index) => (
+                  <div key={index} className="flex justify-between items-center py-2 border-b border-border last:border-0">
+                    <span className="text-foreground font-medium">{item.name}</span>
+                    <span className="text-accent font-semibold">Rp {item.price}</span>
+                  </div>
+                ))}
               </div>
               <div className="mt-4 pt-4 border-t border-border">
-                <p className="text-sm font-semibold text-foreground">
-                  📦 Minimal order: 1 toples
-                </p>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Harga mulai dari <span className="font-semibold text-accent">Rp 80.000</span>/toples
+                <p className="text-xs text-muted-foreground">
+                  📦 Minimal order: 1 toples (kecuali Paket Lengkap)
                 </p>
               </div>
             </CardContent>
@@ -88,7 +90,7 @@ const Menu = () => {
             <div className="relative h-64 overflow-hidden">
               <img
                 src={nasiBoxImage}
-                alt="Nasi Box ADA RASA"
+                alt="Nasi Box Katering Ada Rasa"
                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute top-4 right-4 bg-nature text-nature-foreground px-4 py-2 rounded-full font-semibold text-sm">
@@ -96,37 +98,33 @@ const Menu = () => {
               </div>
             </div>
             <CardHeader>
-              <CardTitle className="text-2xl">🍱 Nasi Box Custom</CardTitle>
+              <CardTitle className="text-2xl">🍱 Nasi Box</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground mb-4">
-                Paket nasi lengkap dengan pilihan lauk, sayur, dan sambal sesuai
-                selera. Ideal untuk rapat, hajatan, dan acara kantor.
+                Paket nasi lengkap dengan pilihan lauk dan sayur. Ideal untuk rapat, 
+                hajatan, dan acara kantor.
               </p>
-              <div className="space-y-2 text-sm">
-                <div className="flex items-center gap-2">
-                  <span className="text-accent">✓</span>
-                  <span>Pilihan lauk: Ayam, Ikan, Daging, Tempe/Tahu</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-accent">✓</span>
-                  <span>Sayuran segar dan bergizi</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-accent">✓</span>
-                  <span>Sambal khas rumahan (pedas/tidak pedas)</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-accent">✓</span>
-                  <span>Pelengkap: kerupuk, acar, buah</span>
-                </div>
+              <div className="space-y-2">
+                {nasiBoxMenu.map((item, index) => (
+                  <div key={index} className="flex justify-between items-center py-2 border-b border-border last:border-0">
+                    <span className="text-foreground font-medium">{item.name}</span>
+                    <span className="text-accent font-semibold">Rp {item.price}/box</span>
+                  </div>
+                ))}
               </div>
-              <div className="mt-4 pt-4 border-t border-border">
-                <p className="text-sm font-semibold text-foreground">
-                  📦 Minimal order: 20 box
+              <div className="mt-4 pt-4 border-t border-border space-y-2">
+                <p className="text-sm text-foreground font-medium">
+                  ✓ Nasi putih hangat
                 </p>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Harga mulai dari <span className="font-semibold text-accent">Rp 25.000</span>/box
+                <p className="text-sm text-foreground font-medium">
+                  ✓ Pilihan sayur (cantumkan di catatan)
+                </p>
+                <p className="text-sm text-foreground font-medium">
+                  ✓ Sambal & pelengkap
+                </p>
+                <p className="text-xs text-muted-foreground mt-3">
+                  📦 Minimal order: 20 box
                 </p>
               </div>
             </CardContent>
@@ -150,9 +148,9 @@ const Menu = () => {
             size="lg"
             onClick={() => {
               const message = encodeURIComponent(
-                "Halo ADA RASA! Saya ingin konsultasi untuk paket catering khusus."
+                "Halo Katering Ada Rasa! Saya ingin konsultasi untuk paket catering khusus."
               );
-              window.open(`https://wa.me/6281234567890?text=${message}`, "_blank");
+              window.open(`https://wa.me/6285602113573?text=${message}`, "_blank");
             }}
             className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
           >

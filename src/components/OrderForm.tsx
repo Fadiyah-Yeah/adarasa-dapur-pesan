@@ -13,6 +13,7 @@ const OrderForm = () => {
     address: "",
     menu: "",
     eventDate: "",
+    vegetable: "",
     notes: "",
   });
 
@@ -24,24 +25,41 @@ const OrderForm = () => {
       return;
     }
 
-    const message = `*PESANAN BARU - ADA RASA*
+    const message = `*PESANAN BARU - KATERING ADA RASA*
 
+📝 *Data Pemesan:*
 Nama: ${formData.name}
 No. HP: ${formData.phone}
 Alamat: ${formData.address || "-"}
 
+🍱 *Detail Pesanan:*
 Menu: ${formData.menu}
 Tanggal Acara: ${formData.eventDate}
 
-Catatan Tambahan:
+🥬 *Pilihan Sayur:*
+${formData.vegetable || "-"}
+
+📋 *Catatan Tambahan:*
 ${formData.notes || "-"}
 
-Mohon konfirmasi ketersediaan dan harga. Terima kasih! 🙏`;
+---
+Mohon konfirmasi ketersediaan dan total harga. Terima kasih! 🙏`;
 
     const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/6281234567890?text=${encodedMessage}`, "_blank");
+    window.open(`https://wa.me/6285602113573?text=${encodedMessage}`, "_blank");
 
     toast.success("Pesanan akan dikirim via WhatsApp!");
+    
+    // Reset form
+    setFormData({
+      name: "",
+      phone: "",
+      address: "",
+      menu: "",
+      eventDate: "",
+      vegetable: "",
+      notes: "",
+    });
   };
 
   const handleChange = (
@@ -119,13 +137,29 @@ Mohon konfirmasi ketersediaan dan harga. Terima kasih! 🙏`;
                 <Input
                   id="menu"
                   name="menu"
-                  placeholder="Contoh: Nasi Box Ayam 50 pax, Kue Kering 5 toples"
+                  placeholder="Contoh: Nasi Box Ayam Goreng 50 box, Kue Nastar 5 toples"
                   value={formData.menu}
                   onChange={handleChange}
                   required
                 />
                 <p className="text-xs text-muted-foreground">
                   Tuliskan menu dan jumlah yang diinginkan
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="vegetable">
+                  Pilihan Sayur (untuk Nasi Box)
+                </Label>
+                <Input
+                  id="vegetable"
+                  name="vegetable"
+                  placeholder="Contoh: Sayur asem, tumis kangkung, capcay"
+                  value={formData.vegetable}
+                  onChange={handleChange}
+                />
+                <p className="text-xs text-muted-foreground">
+                  Kosongkan jika tidak memesan Nasi Box
                 </p>
               </div>
 
