@@ -43,7 +43,7 @@ ${formData.vegetable || "-"}
 ${formData.notes || "-"}
 
 ---
-Mohon konfirmasi ketersediaan dan total harga. Terima kasih! 🙏`;
+Mohon konfirmasi ketersediaan dan total harga. Terima kasih! `;
 
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/6285602113573?text=${encodedMessage}`, "_blank");
