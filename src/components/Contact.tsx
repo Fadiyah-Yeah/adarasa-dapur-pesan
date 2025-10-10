@@ -47,7 +47,7 @@ const Contact = () => {
                       rel="noopener noreferrer"
                       className="text-accent hover:text-accent/80 text-sm"
                     >
-                      +62 856-0211-3573
+                      +62 856-0211-3573(Pangestuti)
                     </a>
                     <p className="text-xs text-muted-foreground mt-1">
                       (Hanya menerima pesanan via WhatsApp)
