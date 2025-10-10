@@ -196,7 +196,7 @@ Mohon konfirmasi ketersediaan dan total harga. Terima kasih! `;
                 type="submit"
                 className="w-full bg-nature hover:bg-nature/90 text-nature-foreground text-lg py-6"
               >
-                📤 Kirim Pesanan ke WhatsApp
+                📤Kirim Pesanan ke WhatsApp
               </Button>
 
               <p className="text-xs text-center text-muted-foreground">
