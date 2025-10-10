@@ -175,6 +175,9 @@ Mohon konfirmasi ketersediaan dan total harga. Terima kasih! `;
                   onChange={handleChange}
                   required
                 />
+                <p className="text-xs text-muted-foreground">
+                  Pastikan Pesan 3 hari sebelum acara
+                </p>
               </div>
 
               <div className="space-y-2">
