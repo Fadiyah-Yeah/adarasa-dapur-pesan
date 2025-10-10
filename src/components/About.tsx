@@ -58,7 +58,7 @@ const About = () => {
                     Kota & Kabupaten Magelang<br />
                     Daerah Istimewa Yogyakarta<br />
                     <span className="text-accent font-medium">
-                      Sistem Pre-Order (PO)
+                      Sistem Pre-Order (PO) Minimal 3 hari sebelum acara
                     </span>
                   </p>
                 </div>
