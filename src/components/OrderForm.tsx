@@ -5,6 +5,34 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
+import { z } from "zod";
+
+// Validation schema for order form
+const orderSchema = z.object({
+  name: z.string()
+    .min(2, "Nama minimal 2 karakter")
+    .max(100, "Nama maksimal 100 karakter")
+    .regex(/^[a-zA-Z\s.'-]+$/, "Nama hanya boleh berisi huruf dan spasi"),
+  phone: z.string()
+    .regex(/^(\+62|62|0)[0-9]{9,13}$/, "Format nomor HP tidak valid (contoh: 08123456789)"),
+  address: z.string().max(200, "Alamat maksimal 200 karakter").optional().or(z.literal("")),
+  menu: z.string()
+    .min(5, "Detail menu minimal 5 karakter")
+    .max(500, "Detail menu maksimal 500 karakter"),
+  eventDate: z.string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Format tanggal tidak valid"),
+  vegetable: z.string().max(200, "Pilihan sayur maksimal 200 karakter").optional().or(z.literal("")),
+  notes: z.string().max(500, "Catatan maksimal 500 karakter").optional().or(z.literal("")),
+});
+
+type OrderFormData = z.infer<typeof orderSchema>;
+
+// Sanitize input to prevent WhatsApp message format injection
+const sanitizeInput = (input: string): string => {
+  return input
+    .replace(/[*_~`]/g, '') // Remove WhatsApp formatting characters
+    .trim();
+};
 
 const OrderForm = () => {
   const [formData, setFormData] = useState({
@@ -16,31 +44,56 @@ const OrderForm = () => {
     vegetable: "",
     notes: "",
   });
+  const [errors, setErrors] = useState<Partial<Record<keyof OrderFormData, string>>>({});
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
 
-    if (!formData.name || !formData.phone || !formData.menu || !formData.eventDate) {
-      toast.error("Mohon lengkapi data yang wajib diisi");
+    // Validate using Zod schema
+    const result = orderSchema.safeParse(formData);
+    
+    if (!result.success) {
+      const fieldErrors: Partial<Record<keyof OrderFormData, string>> = {};
+      result.error.errors.forEach((err) => {
+        const field = err.path[0] as keyof OrderFormData;
+        if (!fieldErrors[field]) {
+          fieldErrors[field] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      toast.error("Mohon periksa kembali data yang diisi");
       return;
     }
+
+    // Use validated and sanitized data
+    const validatedData = result.data;
+    const sanitizedData = {
+      name: sanitizeInput(validatedData.name),
+      phone: validatedData.phone,
+      address: sanitizeInput(validatedData.address || ""),
+      menu: sanitizeInput(validatedData.menu),
+      eventDate: validatedData.eventDate,
+      vegetable: sanitizeInput(validatedData.vegetable || ""),
+      notes: sanitizeInput(validatedData.notes || ""),
+    };
 
     const message = `*PESANAN BARU - KATERING ADA RASA*
 
 *Data Pemesan:*
-Nama: ${formData.name}
-No. HP: ${formData.phone}
-Alamat: ${formData.address || "-"}
+Nama: ${sanitizedData.name}
+No. HP: ${sanitizedData.phone}
+Alamat: ${sanitizedData.address || "-"}
 
 *Detail Pesanan:*
-Menu: ${formData.menu}
-Tanggal Acara: ${formData.eventDate}
+Menu: ${sanitizedData.menu}
+Tanggal Acara: ${sanitizedData.eventDate}
 
 *Pilihan Sayur:*
-${formData.vegetable || "-"}
+${sanitizedData.vegetable || "-"}
 
 *Catatan Tambahan:*
-${formData.notes || "-"}
+${sanitizedData.notes || "-"}
 
 ---
 Mohon konfirmasi ketersediaan dan total harga. Terima kasih! `;
@@ -65,10 +118,15 @@ Mohon konfirmasi ketersediaan dan total harga. Terima kasih! `;
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
+    // Clear error when user starts typing
+    if (errors[name as keyof OrderFormData]) {
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
+    }
   };
 
   return (
@@ -100,8 +158,12 @@ Mohon konfirmasi ketersediaan dan total harga. Terima kasih! `;
                   placeholder="Nama Anda"
                   value={formData.name}
                   onChange={handleChange}
-                  required
+                  maxLength={100}
+                  className={errors.name ? "border-destructive" : ""}
                 />
+                {errors.name && (
+                  <p className="text-xs text-destructive">{errors.name}</p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -115,8 +177,11 @@ Mohon konfirmasi ketersediaan dan total harga. Terima kasih! `;
                   placeholder="08xx xxxx xxxx"
                   value={formData.phone}
                   onChange={handleChange}
-                  required
+                  className={errors.phone ? "border-destructive" : ""}
                 />
+                {errors.phone && (
+                  <p className="text-xs text-destructive">{errors.phone}</p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -127,7 +192,12 @@ Mohon konfirmasi ketersediaan dan total harga. Terima kasih! `;
                   placeholder="Alamat lengkap (Kota/Kabupaten)"
                   value={formData.address}
                   onChange={handleChange}
+                  maxLength={200}
+                  className={errors.address ? "border-destructive" : ""}
                 />
+                {errors.address && (
+                  <p className="text-xs text-destructive">{errors.address}</p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -140,8 +210,12 @@ Mohon konfirmasi ketersediaan dan total harga. Terima kasih! `;
                   placeholder="Contoh: Nasi Box Ayam Goreng 50 box, Kue Nastar 5 toples"
                   value={formData.menu}
                   onChange={handleChange}
-                  required
+                  maxLength={500}
+                  className={errors.menu ? "border-destructive" : ""}
                 />
+                {errors.menu && (
+                  <p className="text-xs text-destructive">{errors.menu}</p>
+                )}
                 <p className="text-xs text-muted-foreground">
                   Tuliskan menu dan jumlah yang diinginkan
                 </p>
@@ -157,7 +231,12 @@ Mohon konfirmasi ketersediaan dan total harga. Terima kasih! `;
                   placeholder="Contoh: Sayur asem, tumis kangkung, capcay"
                   value={formData.vegetable}
                   onChange={handleChange}
+                  maxLength={200}
+                  className={errors.vegetable ? "border-destructive" : ""}
                 />
+                {errors.vegetable && (
+                  <p className="text-xs text-destructive">{errors.vegetable}</p>
+                )}
                 <p className="text-xs text-muted-foreground">
                   Kosongkan jika tidak memesan Nasi Box
                 </p>
@@ -173,8 +252,11 @@ Mohon konfirmasi ketersediaan dan total harga. Terima kasih! `;
                   type="date"
                   value={formData.eventDate}
                   onChange={handleChange}
-                  required
+                  className={errors.eventDate ? "border-destructive" : ""}
                 />
+                {errors.eventDate && (
+                  <p className="text-xs text-destructive">{errors.eventDate}</p>
+                )}
                 <p className="text-xs text-muted-foreground">
                   Pastikan Pesan 3 hari sebelum acara
                 </p>
@@ -189,7 +271,12 @@ Mohon konfirmasi ketersediaan dan total harga. Terima kasih! `;
                   rows={4}
                   value={formData.notes}
                   onChange={handleChange}
+                  maxLength={500}
+                  className={errors.notes ? "border-destructive" : ""}
                 />
+                {errors.notes && (
+                  <p className="text-xs text-destructive">{errors.notes}</p>
+                )}
               </div>
 
               <Button
