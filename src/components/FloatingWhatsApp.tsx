@@ -1,12 +1,10 @@
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { WHATSAPP_MESSAGES, createWhatsAppUrl } from "@/lib/constants";
 
 const FloatingWhatsApp = () => {
   const handleClick = () => {
-    const message = encodeURIComponent(
-      "Halo Katering Ada Rasa! Saya ingin tanya-tanya tentang katering."
-    );
-    window.open(`https://wa.me/6285602113573?text=${message}`, "_blank");
+    window.open(createWhatsAppUrl(WHATSAPP_MESSAGES.general), "_blank");
   };
 
   return (

@@ -1,5 +1,6 @@
 import { MapPin, Phone, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { WHATSAPP_LINK, WHATSAPP_MESSAGES, createWhatsAppUrl } from "@/lib/constants";
 
 const Contact = () => {
   return (
@@ -42,7 +43,7 @@ const Contact = () => {
                   <div>
                     <p className="font-semibold text-foreground">WhatsApp</p>
                     <a
-                      href="https://wa.me/6285602113573"
+                      href={WHATSAPP_LINK}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-accent hover:text-accent/80 text-sm"
@@ -59,10 +60,7 @@ const Contact = () => {
               <div className="mt-6 pt-6 border-t border-border">
                 <Button
                   onClick={() => {
-                    const message = encodeURIComponent(
-                      "Halo Katering Ada Rasa! Saya ingin tanya-tanya tentang katering."
-                    );
-                    window.open(`https://wa.me/6285602113573?text=${message}`, "_blank");
+                    window.open(createWhatsAppUrl(WHATSAPP_MESSAGES.general), "_blank");
                   }}
                   className="w-full bg-nature hover:bg-nature/90 text-nature-foreground gap-2"
                 >

@@ -2,13 +2,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import kueKeringImage from "@/assets/kue-kering.jpg";
 import nasiBoxImage from "@/assets/nasi-box.jpg";
+import { WHATSAPP_MESSAGES, createWhatsAppUrl } from "@/lib/constants";
 
 const Menu = () => {
   const handleOrder = (menuType: string) => {
-    const message = encodeURIComponent(
-      `Halo Katering Ada Rasa! Saya tertarik dengan ${menuType}. Mohon info lebih lanjut.`
-    );
-    window.open(`https://wa.me/6285602113573?text=${message}`, "_blank");
+    const message = menuType === "Kue Kering" 
+      ? WHATSAPP_MESSAGES.kueKering 
+      : WHATSAPP_MESSAGES.nasiBox;
+    window.open(createWhatsAppUrl(message), "_blank");
   };
 
   const kueKeringMenu = [
@@ -147,10 +148,7 @@ const Menu = () => {
             variant="outline"
             size="lg"
             onClick={() => {
-              const message = encodeURIComponent(
-                "Halo Katering Ada Rasa! Saya ingin konsultasi untuk paket catering khusus."
-              );
-              window.open(`https://wa.me/6285602113573?text=${message}`, "_blank");
+              window.open(createWhatsAppUrl(WHATSAPP_MESSAGES.customMenu), "_blank");
             }}
             className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
           >

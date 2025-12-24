@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { z } from "zod";
+import { WHATSAPP_LINK } from "@/lib/constants";
 
 // Validation schema for order form
 const orderSchema = z.object({
@@ -99,7 +100,7 @@ ${sanitizedData.notes || "-"}
 Mohon konfirmasi ketersediaan dan total harga. Terima kasih! `;
 
     const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/6285602113573?text=${encodedMessage}`, "_blank");
+    window.open(`${WHATSAPP_LINK}?text=${encodedMessage}`, "_blank");
 
     toast.success("Pesanan akan dikirim via WhatsApp!");
     
