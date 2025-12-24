@@ -1,4 +1,5 @@
 import { Heart } from "lucide-react";
+import { WHATSAPP_LINK } from "@/lib/constants";
 
 const Footer = () => {
   return (
@@ -29,9 +30,9 @@ const Footer = () => {
             <h4 className="font-semibold mb-3">Hubungi Kami</h4>
             <div className="flex gap-4 mb-4">
               <a
-                href="https://wa.me/6285602113573"
+                href={WHATSAPP_LINK}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 className="hover:text-accent transition-colors"
               >
                 💬 WhatsApp

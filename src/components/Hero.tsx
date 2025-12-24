@@ -1,13 +1,11 @@
 import { MessageCircle, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-image.jpg";
+import { WHATSAPP_MESSAGES, createWhatsAppUrl } from "@/lib/constants";
 
 const Hero = () => {
   const handleWhatsAppClick = () => {
-    const message = encodeURIComponent(
-      "Halo Katering Ada Rasa! Saya ingin tanya-tanya tentang katering."
-    );
-    window.open(`https://wa.me/6285602113573?text=${message}`, "_blank");
+    window.open(createWhatsAppUrl(WHATSAPP_MESSAGES.general), "_blank");
   };
 
   const scrollToForm = () => {
